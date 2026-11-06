@@ -1,4 +1,4 @@
-# GameBox — Projeto BMVC (Nível 1)
+# GameBox — Projeto Modelagem Utilizando BMVC (Nível 1)
 
 Projeto desenvolvido a partir da estrutura BMVC. O tema é um catálogo de jogos.
 
@@ -27,10 +27,6 @@ Abra `http://localhost:8080/portal` no navegador.
 
 Depois do login, o sistema redireciona para `/banco`, onde a lista de jogos é exibida.
 
-## Operações via cURL (Linux)
-
-Mantenha o servidor em execução. Em outro terminal, entre na pasta raiz do projeto.
-
 ### 1. Login e armazenamento do cookie de sessão
 
 ```bash
@@ -38,7 +34,7 @@ curl -i -c cookies.txt -X POST http://localhost:8080/portal \
   -d "username=aluno" -d "password=123456"
 ```
 
-O arquivo `cookies.txt` guarda o cookie necessário para autenticar as operações seguintes.
+O arquivo `cookies.txt` guarda o cookie necessário para autenticar as operações.
 
 ### 2. CREATE — cadastrar um jogo
 
@@ -47,8 +43,6 @@ curl -i -b cookies.txt -X POST http://localhost:8080/api/objetos \
   -H "Content-Type: application/json" \
   -d '{"nome":"God of War Ragnarök","plataforma":"PlayStation 5"}'
 ```
-
-Resposta esperada: HTTP `201` e os dados do objeto cadastrado, incluindo seu `id`.
 
 ### 3. READ — consultar os objetos pela API (além da página /banco)
 
@@ -72,7 +66,7 @@ curl -i -b cookies.txt -X DELETE http://localhost:8080/api/objetos/3
 curl -b cookies.txt http://localhost:8080/api/objetos
 ```
 
-A página não deverá mais conter o objeto excluído após executar tal procedimento. A página `/banco` também mostrará a lista atualizada ao recarregar.
+A página não deverá mais conter o objeto excluído após executar tal procedimento. A página `/banco` também ira mostrar a lista atualizada ao recarregar.
 
 ## Estrutura BMVC
 
@@ -99,5 +93,5 @@ app/
 ## Observações
 
 - O login de demonstração está no arquivo `app/controllers/db/user_accounts.json`; altere a senha antes de qualquer uso real.
-- As sessões ficam em memória no servidor e são perdidas quando ele é reiniciado.
+- As sessões ficam na memória no servidor e são perdidas quando ele é reiniciado.
 - O cookie está configurado para funcionar em `localhost` por HTTP (`secure=False`). Em produção, use HTTPS e `secure=True`.
